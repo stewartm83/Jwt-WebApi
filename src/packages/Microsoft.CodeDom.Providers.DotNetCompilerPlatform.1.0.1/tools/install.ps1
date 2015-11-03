@@ -8,11 +8,6 @@ if ($project -eq $null) {
 }
 
 $libDirectory = Join-Path $installPath 'lib\net45'
-$packageDirectory = Split-Path $installPath
-$compilerPackage = Get-ChildItem $packageDirectory | Where-Object {$_.Name.StartsWith($compilerPackageName)}
-$compilerPackageDirectory = Join-Path $packageDirectory $compilerPackage.Name
-$compilerPackageToolsDirectory = Join-Path $compilerPackageDirectory 'tools'
-
 $projectRoot = $project.Properties.Item('FullPath').Value
 $binDirectory = Join-Path $projectRoot 'bin'
 
@@ -22,10 +17,34 @@ $binDirectory = Join-Path $projectRoot 'bin'
 New-Item $binDirectory -type directory -force | Out-Null
 Copy-Item $libDirectory\* $binDirectory | Out-Null
 
+# For Web Site, we need to copy the Roslyn toolset into
+# the applicaiton's bin folder. 
+# For Web Applicaiton project, this is done in csproj.
 if ($project.Type -eq 'Web Site') {
+    $packageDirectory = Split-Path $installPath
+
+    # Get the installed Microsoft.Net.Compilers package.
+    $compilerPackages = Get-Package -ProjectName $project.Name | Where-Object {$_.Id -eq $compilerPackageName}
+    if ($compilerPackages.Count -eq 0)
+    {
+        Write-Host "Package $compilerPackageName is not installed correctly."
+        Write-Host 'The install.ps1 did not complete.'
+        break
+    }
+
+    $compilerPackageFolderName = $compilerPackages[0].Id + "." + $compilerPackages[0].Versions[0]
+    $compilerPackageDirectory = Join-Path $packageDirectory $compilerPackageFolderName
+    if ((Get-Item $compilerPackageDirectory) -isnot [System.IO.DirectoryInfo])
+    {
+        Write-Host "The install.ps1 cannot find the installation location of package $compilerPackageName, or the pakcage is not installed correctly."
+        Write-Host 'The install.ps1 did not complete.'
+        break
+    }
+
+    $compilerPackageToolsDirectory = Join-Path $compilerPackageDirectory 'tools'
     $roslynSubDirectory = Join-Path $binDirectory $roslynSubFolder
-    New-Item $roslynSubDirectory -type directory -force
-    Copy-Item $compilerPackageToolsDirectory\* $roslynSubDirectory
+    New-Item $roslynSubDirectory -type directory -force | Out-Null
+    Copy-Item $compilerPackageToolsDirectory\* $roslynSubDirectory | Out-Null
 
     # Generate a .refresh file for each dll/exe file.
     Push-Location
@@ -46,33 +65,33 @@ if ($project.Type -eq 'Web Site') {
 # SIG # Begin signature block
 # MIIarQYJKoZIhvcNAQcCoIIanjCCGpoCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4NU63n4pEviX8BhDuZffBBeM
-# 0QegghWCMIIEwzCCA6ugAwIBAgITMwAAAHD0GL8jIfxQnQAAAAAAcDANBgkqhkiG
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUT2Dgu+1mvQqumIV4qvwdp5mW
+# sPegghWCMIIEwzCCA6ugAwIBAgITMwAAAHGzLoprgqofTgAAAAAAcTANBgkqhkiG
 # 9w0BAQUFADB3MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4G
 # A1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSEw
-# HwYDVQQDExhNaWNyb3NvZnQgVGltZS1TdGFtcCBQQ0EwHhcNMTUwMzIwMTczMjAy
-# WhcNMTYwNjIwMTczMjAyWjCBszELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hp
+# HwYDVQQDExhNaWNyb3NvZnQgVGltZS1TdGFtcCBQQ0EwHhcNMTUwMzIwMTczMjAz
+# WhcNMTYwNjIwMTczMjAzWjCBszELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hp
 # bmd0b24xEDAOBgNVBAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jw
 # b3JhdGlvbjENMAsGA1UECxMETU9QUjEnMCUGA1UECxMebkNpcGhlciBEU0UgRVNO
-# OkY1MjgtMzc3Ny04QTc2MSUwIwYDVQQDExxNaWNyb3NvZnQgVGltZS1TdGFtcCBT
-# ZXJ2aWNlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoxTZ7xygeRG9
-# LZoEnSM0gqVCHSsA0dIbMSnIKivzLfRui93iG/gT9MBfcFOv5zMPdEoHFGzcKAO4
-# Kgp4xG4gjguAb1Z7k/RxT8LTq8bsLa6V0GNnsGSmNAMM44quKFICmTX5PGTbKzJ3
-# wjTuUh5flwZ0CX/wovfVkercYttThkdujAFb4iV7ePw9coMie1mToq+TyRgu5/YK
-# VA6YDWUGV3eTka+Ur4S+uG+thPT7FeKT4thINnVZMgENcXYAlUlpbNTGNjpaMNDA
-# ynOJ5pT2Ix4SYFEACMHe2j9IhO21r9TTmjiVqbqjWLV4aEa/D4xjcb46Q0NZEPBK
-# unvW5QYT3QIDAQABo4IBCTCCAQUwHQYDVR0OBBYEFG3P87iErvfMdr24e6w9l2GB
-# dCsnMB8GA1UdIwQYMBaAFCM0+NlSRnAK7UD7dvuzK7DDNbMPMFQGA1UdHwRNMEsw
+# OkI4RUMtMzBBNC03MTQ0MSUwIwYDVQQDExxNaWNyb3NvZnQgVGltZS1TdGFtcCBT
+# ZXJ2aWNlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6pG9soj9FG8h
+# NigDZjM6Zgj7W0ukq6AoNEpDMgjAhuXJPdUlvHs+YofWfe8PdFOj8ZFjiHR/6CTN
+# A1DF8coAFnulObAGHDxEfvnrxLKBvBcjuv1lOBmFf8qgKf32OsALL2j04DROfW8X
+# wG6Zqvp/YSXRJnDSdH3fYXNczlQqOVEDMwn4UK14x4kIttSFKj/X2B9R6u/8aF61
+# wecHaDKNL3JR/gMxR1HF0utyB68glfjaavh3Z+RgmnBMq0XLfgiv5YHUV886zBN1
+# nSbNoKJpULw6iJTfsFQ43ok5zYYypZAPfr/tzJQlpkGGYSbH3Td+XA3oF8o3f+gk
+# tk60+Bsj6wIDAQABo4IBCTCCAQUwHQYDVR0OBBYEFPj9I4cFlIBWzTOlQcJszAg2
+# yLKiMB8GA1UdIwQYMBaAFCM0+NlSRnAK7UD7dvuzK7DDNbMPMFQGA1UdHwRNMEsw
 # SaBHoEWGQ2h0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS9wa2kvY3JsL3Byb2R1Y3Rz
 # L01pY3Jvc29mdFRpbWVTdGFtcFBDQS5jcmwwWAYIKwYBBQUHAQEETDBKMEgGCCsG
 # AQUFBzAChjxodHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20vcGtpL2NlcnRzL01pY3Jv
 # c29mdFRpbWVTdGFtcFBDQS5jcnQwEwYDVR0lBAwwCgYIKwYBBQUHAwgwDQYJKoZI
-# hvcNAQEFBQADggEBAF46KvVn9AUwKt7hue9n/Cr/bnIpn558xxPDo+WOPATpJhVN
-# 98JnglwKW8UK7lXwoy2Ooh2isywt0BHimioB0TAmZ6GmbokxHG7dxHFU8Ami3cHW
-# NnPADP9VCGv8oZT9XSwnIezRIwbcBCzvuQLbA7tHcxgK632ZzV8G4Ij3ipPFEhEb
-# 81KVo3Kg0ljZwyzia3931GNT6oK4L0dkKJjHgzvxayhh+AqIgkVSkumDJklct848
-# mn+voFGTxby6y9ErtbuQGQqmp2p++P0VfkZEh6UG1PxKcDjG6LVK9NuuL+xDyYmi
-# KMVV2cG6W6pgu6W7+dUCjg4PbcI1cMCo7A2hsrgwggTsMIID1KADAgECAhMzAAAB
+# hvcNAQEFBQADggEBAC0EtMopC1n8Luqgr0xOaAT4ku0pwmbMa3DJh+i+h/xd9N1P
+# pRpveJetawU4UUFynTnkGhvDbXH8cLbTzLaQWAQoP9Ye74OzFBgMlQv3pRETmMaF
+# Vl7uM7QMN7WA6vUSaNkue4YIcjsUe9TZ0BZPwC8LHy3K5RvQrumEsI8LXXO4FoFA
+# I1gs6mGq/r1/041acPx5zWaWZWO1BRJ24io7K+2CrJrsJ0Gnlw4jFp9ByE5tUxFA
+# BMxgmdqY7Cuul/vgffW6iwD0JRd/Ynq7UVfB8PDNnBthc62VjCt2IqircDi0ASh9
+# ZkJT3p/0B3xaMA6CA1n2hIa5FSVisAvSz/HblkUwggTsMIID1KADAgECAhMzAAAB
 # Cix5rtd5e6asAAEAAAEKMA0GCSqGSIb3DQEBBQUAMHkxCzAJBgNVBAYTAlVTMRMw
 # EQYDVQQIEwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQKExVN
 # aWNyb3NvZnQgQ29ycG9yYXRpb24xIzAhBgNVBAMTGk1pY3Jvc29mdCBDb2RlIFNp
@@ -166,25 +185,25 @@ if ($project.Type -eq 'Web Site') {
 # VQQHEwdSZWRtb25kMR4wHAYDVQQKExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xIzAh
 # BgNVBAMTGk1pY3Jvc29mdCBDb2RlIFNpZ25pbmcgUENBAhMzAAABCix5rtd5e6as
 # AAEAAAEKMAkGBSsOAwIaBQCgga4wGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQw
-# HAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFDvK
-# fpycwfPatt+qgg/wt8sn9WuHME4GCisGAQQBgjcCAQwxQDA+oCSAIgBNAGkAYwBy
+# HAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFGrD
+# n8HrppdN2VtEdPWmgfdnM+wTME4GCisGAQQBgjcCAQwxQDA+oCSAIgBNAGkAYwBy
 # AG8AcwBvAGYAdAAgAEEAUwBQAC4ATgBFAFShFoAUaHR0cDovL3d3dy5hc3AubmV0
-# LyAwDQYJKoZIhvcNAQEBBQAEggEAY89COpl+7GxCYosYAwhnzs2yzV6UWzYCxH8J
-# UbpBaEDarn16Gyh5RjjwLCI8hilUTfZd7hvpbwLc7dyt6JrB3jdt8AfaKwU4kQDw
-# NWixHxclnR3HuCE6nTSEd6O7ZPWYvTKx6ItmGH8MT5zX52tpylcEGk2VBKWP90OV
-# c8zS6Bdm/p4UdWfEtczmm79MssvhRJLKS81QbcNIY/fSClFDCbWzMg9jER83szK5
-# siCFvZpM3if3jdoSBlm24LAbWSdMEfdAhTpiZ9qMkWuk19ZmtflMbIsRXVEKPyPp
-# h2s/Uu2H6tOjh/dy0J55I9Yjb9N2k99teflCevXLd/j0xDMGTKGCAigwggIkBgkq
+# LyAwDQYJKoZIhvcNAQEBBQAEggEAg7sCrrfozldk914zeh6aUyw0xeNb8wnrc9RV
+# VSfMdCQ2Fp+FTzC6gfkEe63iCaA0uHucepFMzNcY3g3h8obwQRwV/jH8PNeFIZFe
+# mpKuoGqK/dyCtqRM3aXYxc4ejQTX3RzoSZmgnATaLFeOKOgH+kmzjmUZuhbG0+hj
+# bpcOQ3uvQmMLpWlJGuws1Afpt/q1xSXzQTyX4tiDSrLe9HYI1yTSLm6jR4ZkGgMf
+# awh/e1JAWWRR50nNdHTRAbbm4JbPNZsUIrjD+72cfx95Q98kRRgFAg0jnkeq9CSD
+# tgSRcWxYNJJNZ4D2CMWX1xWAqT1pjNCy52wSRkTZmbWfKEul2aGCAigwggIkBgkq
 # hkiG9w0BCQYxggIVMIICEQIBATCBjjB3MQswCQYDVQQGEwJVUzETMBEGA1UECBMK
 # V2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0
 # IENvcnBvcmF0aW9uMSEwHwYDVQQDExhNaWNyb3NvZnQgVGltZS1TdGFtcCBQQ0EC
-# EzMAAABw9Bi/IyH8UJ0AAAAAAHAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzEL
-# BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE1MDYxNTA5MDUxNFowIwYJKoZI
-# hvcNAQkEMRYEFKlGGP6GbAyMgc6+TnqAi9roXL4mMA0GCSqGSIb3DQEBBQUABIIB
-# AAKAFMGUisPm9qW//v6e+PI2UMjKPQOi7L7KBXb0LNalFyoUDXGgP34ACCjSVxsi
-# jesrpqklUJ9wOiDdM9ulSEluZCYD0FrWAtiXACo9DZaqDTRp+DxyZ7hLoG87eya1
-# dptFzXJQZPbpr8NOJxUhRsoIiWh7/MgZ3J13OuF8u61nOmjQSfmXWNvJJnBRiVGE
-# XOh2Rkxr5KO2zjPiNSNooLZcW0tVdnysrzhAbJicHAnzk24LIYouMB+Azs9O04pj
-# ve6O5WDeFdr8Fjvf8TuPfyli9mm40kQGROr6Rc3zhXQoG88ffGLQyaVRDrLFCvbi
-# kac5LhN/Bj1kfZ9XCh2pXfI=
+# EzMAAABxsy6Ka4KqH04AAAAAAHEwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzEL
+# BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE1MDgyMDE1MDczNVowIwYJKoZI
+# hvcNAQkEMRYEFF6WSYete4bZiV+i2kwUeGVUI0a2MA0GCSqGSIb3DQEBBQUABIIB
+# AEw7rJgr1JFOY7cQt0qdly81fQ3ir7tH8C34PcaEd+nvwthiQDT/qU7P98WO6Jft
+# HfHE8Xjt2C5dTfKmwVq4P0rQGyba/bEh9dQ5RWfiQodb1rRYWAkyPyJj34HLsTk4
+# dPcIlYHCv5LPzXF+9UezWEYe0PjlYjNe93Kx1GfxvuBOrBgTh8jLxsvhD/pXN+9r
+# W6AJcpd5/nEG2zC6sKmq+/RKlmNWxUYR96TvlipOjq4J8iPRx6soNNPJPf+AXp+T
+# f6Um3fOCgGYquyzU9jYVQYHoQYIcpgyJJDRnyL7tKGZqQBh4DisFcp8IurRL2Fta
+# nX8Uq7gB9swpfXodY5TphAY=
 # SIG # End signature block
