@@ -28,6 +28,7 @@ C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.WebPages.dll
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.WebPages.Razor.dll
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\WebGrease.dll
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\Antlr3.Runtime.pdb
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\Newtonsoft.Json.xml
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Net.Http.Formatting.xml
@@ -40,7 +41,12 @@ C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.WebPages.xml
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.WebPages.Razor.xml
-C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\Antlr3.Runtime.pdb
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.dll
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.pdb
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\EntityFramework.dll
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\EntityFramework.xml
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\EntityFramework.SqlServer.xml
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csprojResolveAssemblyReference.cache
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.Migrations.initial.resources
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.GenerateResource.Cache

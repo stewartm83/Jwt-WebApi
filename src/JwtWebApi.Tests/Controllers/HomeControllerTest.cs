@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JwtWebApi;
 using JwtWebApi.Controllers;
 
 namespace JwtWebApi.Tests.Controllers

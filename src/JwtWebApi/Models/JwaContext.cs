@@ -2,6 +2,8 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using JwtWebApi.Models.Entities;
 
+
+
 namespace JwtWebApi.Models
 {
     public class JwaContext : DbContext
@@ -20,7 +22,7 @@ namespace JwtWebApi.Models
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<User>().HasMany(u => u.Roles);
+            modelBuilder.Entity<User>().HasMany(r => r.Roles);
             modelBuilder.Entity<Role>().HasMany(u => u.Users);
 
             base.OnModelCreating(modelBuilder);
