@@ -53,3 +53,4 @@ C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.Cors.dll
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.Http.Cors.dll
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.Http.Cors.xml
+C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\JWT.dll

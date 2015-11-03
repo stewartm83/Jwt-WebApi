@@ -3,9 +3,7 @@ using JwtWebApi.Models.Entities;
 namespace JwtWebApi.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<JwtWebApi.Models.JwaContext>
     {
