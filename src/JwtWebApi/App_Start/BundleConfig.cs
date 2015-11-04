@@ -8,16 +8,16 @@ namespace JwtWebApi
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                "~/Scripts/jquery-{version}.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/scripts/angular.js",
@@ -33,18 +33,19 @@ namespace JwtWebApi
                 "~/scripts/angular-sanitize.js",
                 "~/scripts/angular-scenario.js",
                 "~/scripts/angular-touch.js",
-                "~/scripts/angular-ui-router.js"));
+                "~/scripts/AngularUI/ui-router.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jwtapp").Include(
-                 "~/scripts/app/app.js",
-                "~/scripts/app/account/login.js",
-                "~/scripts/app/account/register.js",
-                "~/scripts/app/books/book-detail.js",
-                "~/scripts/app/books/books.js",
-                "~/scripts/app/home/header.js",
-                "~/scripts/app/home/home.js",
-                "~/scripts/app/services/authinterceptor.js",
-                "~/scripts/app/services/bookservice.js"));
+                "client/app.js",
+                "client/account/login.js",
+                "client/account/register.js",
+                "client/books/book-detail.js",
+                "client/books/books.js",
+                "client/home/header.js",
+                "client/home/home.js",
+                "client/services/authinterceptor.js",
+                "client/services/bookservice.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css",
