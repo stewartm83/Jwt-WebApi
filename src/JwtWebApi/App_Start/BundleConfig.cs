@@ -35,16 +35,16 @@ namespace JwtWebApi
                 "~/scripts/angular-touch.js",
                 "~/scripts/AngularUI/ui-router.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jwtapp").Include(
-                "client/app.js",
-                "client/account/login.js",
-                "client/account/register.js",
-                "client/books/book-detail.js",
-                "client/books/books.js",
-                "client/home/header.js",
-                "client/home/home.js",
-                "client/services/authinterceptor.js",
-                "client/services/bookservice.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jwtWebApp").Include(
+                "~/client/app.js",
+                "~/client/account/login.js",
+                "~/client/account/register.js",
+                "~/client/books/book-detail.js",
+                "~/client/books/books.js",
+                "~/client/home/header.js",
+                "~/client/home/home.js",
+                "~/client/services/authinterceptor.js",
+                "~/client/services/bookservice.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
