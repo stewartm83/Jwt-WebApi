@@ -1,0 +1,20 @@
+﻿(function() {
+    "use strict";
+
+    angular.module("jwtWebApp").factory("authinterceptor", function($window) {
+        var storage = $window.localStorage;
+
+        return {
+            request: function(config) {
+                var token = storage.getItem("token");
+                if (token) {
+                    config.headers.Authorization = "Bearer" + " " + token;
+                }
+                return config;
+            },
+            response: function(response) {
+                return response;
+            }
+        };
+    });
+})();

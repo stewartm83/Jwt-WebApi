@@ -1,0 +1,28 @@
+﻿<div class="container">
+    <h2>List of Books</h2>
+    <div class="row card" ng-repeat="book in books" style="border: 2px solid grey; padding: 5px 10px;">
+
+        <div>
+            <figure>
+                <img class="img-circle img-responsive" src="http://placehold.it/400x250" alt="placehold.it/350x250">
+            </figure>
+        </div>
+        <div>
+            <h4>{{book.Title}}</h4>
+            <p>
+                {{book.Description}}
+            </p>
+            <h5> {{ book.Genre}}</h5>
+            <span>{{book.Price}}</span>
+            <p>
+                {{book.PublishDate}}
+            </p>
+            <a ui-sref=".detail({id:book.BookId})" class="btn btn-success">More Details</a>
+        </div>
+    </div>
+
+</div>
+
+<div ui-view="detail">
+
+</div>

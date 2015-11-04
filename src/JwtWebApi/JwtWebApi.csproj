@@ -145,7 +145,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client\directives\" />
-    <Folder Include="Client\services\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthHandler.cs" />
@@ -204,15 +203,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Client\account\login.html" />
+    <Content Include="Client\account\login.js" />
+    <Content Include="Client\account\register.html" />
+    <Content Include="Client\account\register.js" />
     <Content Include="Client\app.js" />
     <Content Include="Client\about\about.js" />
     <Content Include="Client\about\about.html" />
+    <Content Include="Client\books\book-detail.html" />
+    <Content Include="Client\books\book-detail.js" />
+    <Content Include="Client\books\books.html" />
+    <Content Include="Client\books\books.js" />
+    <Content Include="Client\home\content.html" />
+    <Content Include="Client\home\footer.html" />
+    <Content Include="Client\home\header.html" />
+    <Content Include="Client\home\header.js" />
+    <Content Include="Client\home\home.html" />
+    <Content Include="Client\home\home.js" />
     <Content Include="Client\main\main.html" />
     <Content Include="Client\main\main.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Client\services\authInterceptor.js" />
+    <Content Include="Client\services\bookService.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

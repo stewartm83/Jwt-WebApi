@@ -1,0 +1,58 @@
+﻿<div class="container">
+    <div class="row">
+
+        <h1>Login</h1>
+
+        <form class="form-horizontal">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Form</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="email_login">Email:</label>
+                    <div class="col-md-4">
+                        <input id="email_login" name="email_login" type="text"
+                               placeholder="joe.doe@hotmail.com" class="form-control input-md" required ng-model="email">
+                        <span class="help-block">Enter your e-mail address</span>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+
+                <!-- Password input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="password_login">Password:</label>
+                    <div class="col-md-4">
+                        <input id="password_login" name="password_login" type="password"
+                               placeholder="●●●●●" class="form-control input-md" required ng-model="password">
+                        <span class="help-block">Enter your password</span>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+
+                <!-- Multiple Checkboxes (inline) -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="login_options"></label>
+                    <div class="col-md-4">
+                        <label class="checkbox-inline" for="login_options">
+                            <input type="checkbox" name="login_options" id="login_options" value="1" ng-model="remember_me">Remember me
+                        </label>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click="submit()">Login</button>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+</div>
