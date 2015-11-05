@@ -1,13 +1,6 @@
 "use strict";
 
-/**
- * @ngdoc overview
- * @name jwtScafApp
- * @description
- * # jwtScafApp
- *
- * Main module of the application.
- */
+
 angular
     .module("jwtWebApp", [
         "ngAnimate",

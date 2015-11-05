@@ -143,7 +143,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Client\directives\" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +201,10 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\JwtWebApiDb.mdf" />
+    <Content Include="App_Data\JwtWebApiDb_log.ldf">
+      <DependentUpon>JwtWebApiDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Client\account\login.html" />
     <Content Include="Client\account\login.js" />
@@ -209,8 +212,6 @@
     <Content Include="Client\account\register.html" />
     <Content Include="Client\account\register.js" />
     <Content Include="Client\app.js" />
-    <Content Include="Client\about\about.js" />
-    <Content Include="Client\about\about.html" />
     <Content Include="Client\books\book-detail.html" />
     <Content Include="Client\books\book-detail.js" />
     <Content Include="Client\books\books.html" />

@@ -1,17 +1,23 @@
-﻿angular.module("jwtWebApp")
-    .controller("BooksCtrl",
-    [
-        "$scope", "$http", function($scope, $http) {
+﻿(function() {
+    "use strict";
 
+    angular.module("jwtWebApp")
+        .controller("BooksCtrl",
+        [
+            "$scope", "$http", function($scope, $http) {
+                $scope.books = {};
 
-            $scope.books = {};
+                $http.get("/api/books").
+                    success(function(res) {
+                        $scope.books = res;
+                        $scope.isSuccess = true;
+                    })
+                    .error(function(err) {
+                        $scope.isSuccess = false;
+                        console.log(err);
+                        $scope.ErrorMessage = err.Message;
+                    });
+            }
+        ]);
 
-            $http.get("/api/books").
-                success(function(res) {
-                    $scope.books = res;
-                })
-                .error(function(err) {
-                    console.log(err);
-                });
-        }
-    ]);
+})();
