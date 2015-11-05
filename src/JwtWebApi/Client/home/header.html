@@ -14,7 +14,7 @@
                     <a ui-sref="books">Books</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-show="true">
+            <ul class="nav navbar-nav navbar-right" ng-hide="isAuthenticated()">
                 <li ui-sref-active="active">
                     <a ui-sref="login">Login</a>
                 </li>
@@ -22,12 +22,13 @@
                     <a ui-sref="register">Register</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-hide="true">
+            <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
                 <li >
-                    <a ui-sref="logout()">Hello Stewart</a>
+                    <a ng-click="logout()">Hello Stewart</a>
+                   
                 </li>
                 <li>
-                    <a ui-sref="logout()">Log Off</a>
+                    <a ng-click="logout()">Log Off</a>
                 </li>
             </ul>
         </div>

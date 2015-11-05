@@ -13,7 +13,7 @@
     }
 
     angular
-        .module("app")
+        .module("jwtWebApp")
         .controller("LogoutCtrl", logoutCtrl);
 
     logoutCtrl.$inject = ["$window"];
