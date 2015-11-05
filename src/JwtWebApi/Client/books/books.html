@@ -1,27 +1,63 @@
-﻿<div class="container">
+﻿<div class="container body-content">
     <h2>List of Books</h2>
-    <div class="row card" ng-repeat="book in books" style="border: 2px solid grey; padding: 5px 10px;">
 
-        <div>
-            <figure>
-                <img class="img-circle img-responsive" src="http://placehold.it/400x250" alt="placehold.it/350x250">
-            </figure>
-        </div>
-        <div>
-            <h4>{{book.Title}}</h4>
-            <p>
-                {{book.Description}}
-            </p>
-            <h5> {{ book.Genre}}</h5>
-            <span>{{book.Price}}</span>
-            <p>
-                {{book.PublishDate}}
-            </p>
-            <a ui-sref=".detail({id:book.BookId})" class="btn btn-success">More Details</a>
+    <div class="well well-sm">
+        <strong>Toggle List/Grid</strong>
+        <div class="btn-group pull-right">
+            <a href="#" id="list" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th-list">
+                </span>List
+            </a> <a href="#" id="grid" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th"></span>Grid
+            </a>
         </div>
     </div>
-
+    <div id="products" class="row list-group">
+        <div class="item  col-xs-4 col-lg-4" ng-repeat="book in books">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt=""/>
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{book.Title}}
+                    </h4>
+                    <p class="group inner list-group-item-text">
+                        {{book.Description}}
+                    </p>
+                    <h5> {{ book.Genre}}</h5>
+                    <p>
+                        {{book.PublishDate}}
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                {{book.Price}}
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a ui-sref=".detail({id:book.BookId})" class="btn btn-success">More Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#list').click(function(event) {
+            event.preventDefault();
+            $('#products .item').addClass('list-group-item');
+        });
+
+        $('#grid').click(function(event) {
+            event.preventDefault();
+            $('#products .item').removeClass('list-group-item');
+            $('#products .item').addClass('grid-group-item');
+        });
+    });
+</script>
 
 <div ui-view="detail">
 
