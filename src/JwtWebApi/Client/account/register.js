@@ -6,7 +6,12 @@
         .controller("RegisterCtrl", function($scope, $window, $http, $state) {
 
             var storage = $window.localStorage;
-            debugger;
+
+            //Check for token and remove
+            if (storage.getItem("jwt_token")) {
+                storage.removeItem("jwt_token");
+            }
+
             $scope.submit = function() {
                 debugger;
                 var url = "signup";
@@ -21,7 +26,7 @@
                         console.log(res);
                         console.log(res.dbUser);
                         console.log(res.token);
-                        storage.setItem("token", res.token);
+                        storage.setItem("jwt_token", res.token);
                         $state.go("books");
                     })
                     .error(function(err) {

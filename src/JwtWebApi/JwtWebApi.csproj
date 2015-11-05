@@ -205,6 +205,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Client\account\login.html" />
     <Content Include="Client\account\login.js" />
+    <Content Include="Client\account\logout.js" />
     <Content Include="Client\account\register.html" />
     <Content Include="Client\account\register.js" />
     <Content Include="Client\app.js" />
