@@ -1,43 +1,105 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using JwtWebApi.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JwtWebApi.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JwtWebApi.Controllers.Tests
+namespace JwtWebApi.Tests.Controllers
 {
-    [TestClass()]
+    [TestClass]
     public class AccountControllerTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void LoginTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new AccountController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            var user = new LoginViewModel
+            {
+                Email = "test@test.com",
+                Password = "password123"
+            };
+
+            //Act
+            var response = controller.Login(user);
+
+            //Assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
         }
 
-        [TestMethod()]
-        public void LoginTest1()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
+        [TestMethod]
         public void RegisterTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new AccountController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            var user = new RegisterViewModel
+            {
+                Email = "test@test.com",
+                Password = "password123"
+            };
+
+            //Act
+            var response = controller.Register(user);
+
+            //Assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void CreateSaltTest()
         {
+            //Arrange
+            var controller = new AccountController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            var user = new RegisterViewModel
+            {
+                Email = "test@test.com",
+                Password = "password123"
+            };
+
+            //Act
+            var response = controller.Register(user);
+
+            //Assert
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void EncryptPasswordTest()
         {
+            //Arrange
+
+            var controller = new AccountController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            var user = new RegisterViewModel
+            {
+                Email = "test@test.com",
+                Password = "password123"
+            };
+
+            //Act
+            var response = controller.Register(user);
+
+            //Assert
             Assert.Fail();
         }
     }

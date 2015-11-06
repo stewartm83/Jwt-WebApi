@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JwtWebApi.Controllers;
-using System;
-using System.Collections.Generic;
+﻿using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http;
+using System.Web.Http;
+using JwtWebApi.Controllers;
+using JwtWebApi.Models.Entities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JwtWebApi.Controllers.Tests
+namespace JwtWebApi.Tests.Controllers
 {
     [TestClass()]
     public class BooksControllerTests
@@ -14,31 +14,95 @@ namespace JwtWebApi.Controllers.Tests
         [TestMethod()]
         public void GetBooksTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new BooksController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //Act
+            var books = controller.GetBooks();
+            //Assert
+            Assert.IsNotNull(books);
+            Assert.IsTrue(books.Any());
         }
 
         [TestMethod()]
         public void GetBookTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new BooksController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //Act
+            var book = controller.GetBook(1);
+            //Assert
+            Assert.IsNotNull(book);
+            Assert.AreEqual(book.Id, 1, "Returned Id is different to the expected Id.");
         }
 
         [TestMethod()]
         public void PutBookTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new BooksController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //Act
+            var book = new Book
+            {
+                
+            };
+            //Assert
+            Assert.IsNotNull(book);
+            Assert.AreEqual(book.BookId, 1, "Returned Id is different to the expected Id.");
         }
 
         [TestMethod()]
         public void PostBookTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new BooksController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //Act
+            var book = new Book
+            {
+
+            };
+            //Assert
+            Assert.IsNotNull(book);
+            Assert.AreEqual(book.BookId, 1, "Returned Id is different to the expected Id.");
         }
 
         [TestMethod()]
         public void DeleteBookTest()
         {
-            Assert.Fail();
+            //Arrange
+            var controller = new BooksController
+            {
+                Request = new HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //Act
+            var book = new Book
+            {
+
+            };
+            //Assert
+            Assert.IsNotNull(book);
+            Assert.AreEqual(book.BookId, 1, "Returned Id is different to the expected Id.");
         }
     }
 }
