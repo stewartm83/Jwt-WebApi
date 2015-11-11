@@ -3,14 +3,14 @@
 
 angular
     .module("jwtWebApp", [
-        "ngAnimate",
-        "ngAria",
-        "ngCookies",
-        "ngMessages",
-        "ngResource",
-        "ngRoute",
-        "ngSanitize",
-        "ngTouch",
+        //"ngAnimate",
+        //"ngAria",
+        //"ngCookies",
+        //"ngMessages",
+        //"ngResource",
+        //"ngRoute",
+        //"ngSanitize",
+        //"ngTouch",
         "ui.router"
     ])
     .config(

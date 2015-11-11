@@ -3,7 +3,7 @@
     "use strict";
 
     angular.module("jwtWebApp")
-        .factory("BookService", ["$http", function ($http) {
+        .factory("bookService", ["$http", function ($http) {
 
         function getBooks() {
 
