@@ -19,7 +19,14 @@
 
                     //Check for token
                     if (!storage.getItem("jwt_token")) {
-                        authService.login(user);
+                        authService.login(user).then(
+                            function(response) {
+                                console.log(response);
+                                $window.localStorage.setItem("jwt_token", response.token);
+                            },
+                            function(error) {
+                                console.log(error);
+                            });
                     }
 
                 };

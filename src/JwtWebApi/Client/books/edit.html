@@ -1,0 +1,144 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="ng-binding"></h1>
+
+            <form role="form" name="form" ng-submit="saveItem()" novalidate=""
+                  class="ng-pristine ng-invalid ng-invalid-required">
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="nameInput" class="ng-binding">Name</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input name="nameInput"
+                               ng-model="book.name"
+                               class="form-control"
+                               placeholder="Enter Name"/>
+                        <!--ng-required="streetAddress.required &amp;&amp; streetAddress.visible" required="required">-->
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="dateCreatedInput" class="ng-binding">DateCreated</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input type="date"
+                               name="dateCreatedInput"
+                               ng-model="book.dateCreated"
+                               class="form-control"
+                               placeholder="Enter DateCreated"/>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="dateUpdatedInput" class="ng-binding">DateUpdated</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input type="date"
+                               name="dateUpdatedInput"
+                               ng-model="book.dateUpdated"
+                               class="form-control"
+                               placeholder="Enter DateUpdated"/>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="titleInput" class="ng-binding">Title</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input name="titleInput"
+                               ng-model="book.title"
+                               class="form-control"
+                               placeholder="Enter Title"/>
+                        <!--ng-required="streetAddress.required &amp;&amp; streetAddress.visible" required="required">-->
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="descriptionInput" class="ng-binding">Description</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input name="descriptionInput"
+                               ng-model="book.description"
+                               class="form-control"
+                               placeholder="Enter Description"/>
+                        <!--ng-required="streetAddress.required &amp;&amp; streetAddress.visible" required="required">-->
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="priceInput" class="ng-binding">Price</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input name="priceInput"
+                               ng-model="book.price"
+                               class="form-control"
+                               placeholder="Enter Price"/>
+                        <!--ng-required="streetAddress.required &amp;&amp; streetAddress.visible" required="required">-->
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="genreInput" class="ng-binding">Genre</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input name="genreInput"
+                               ng-model="book.genre"
+                               class="form-control"
+                               placeholder="Enter Genre"/>
+                        <!--ng-required="streetAddress.required &amp;&amp; streetAddress.visible" required="required">-->
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-4">
+                        <label for="publishDateInput" class="ng-binding">PublishDate</label>
+                        <!--<span ng-hide="!streetAddress.required" style="padding-left: 8px" class="ng-binding">(required)</span>-->
+
+                        <input type="date"
+                               name="publishDateInput"
+                               ng-model="book.publishDate"
+                               class="form-control"
+                               placeholder="Enter PublishDate"/>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <button type="submit" class="btn btn-primary pull-right" ng-disabled="form.$error.required"
+                                disabled="disabled">
+                            <span class="ng-binding">Save</span> <span
+                                class="glyphicon glyphicon-chevron-right"></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -20,6 +20,23 @@ angular
 
             $urlRouterProvider.otherwise("/");
 
+            //$stateProvider.state("book_list", {
+            //    url: "/books",
+            //    templateUrl: "app/book/list.html",
+            //    controller: "BookListController"
+            //});
+            //$stateProvider.state("book_edit", {
+            //    url: "/book/edit",
+            //    templateUrl: "app/book/edit.html",
+            //    controller: "BookEditController"
+            //});
+            //$stateProvider.state("book_edit_id", {
+            //    url: "/book/edit/:id",
+            //    templateUrl: "app/book/edit.html",
+            //    controller: "BookEditController"
+            //});
+
+
             $stateProvider
                 .state("home", {
                     url: "/",

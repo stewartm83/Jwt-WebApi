@@ -2,32 +2,34 @@
 
     "use strict";
 
-    authService.$inject = ["$http"];
-    authService.$inject = ["$window"];
-
-    function authService($http, $window) {
+    function authService($http, $window, $q) {
 
         function login(user) {
-            debugger;
+            var deferred = $q.defer();
+
             $http.post("signin", user)
-                .success(function(res) {
-                    $window.localStorage.setItem("jwt_token", res.token);
+                .success(function (res) {
+                    deferred.resolve(res);
                 })
-                .error(function(err) {
-                    $window.localStorage.removeItem("jwt_token");
+                .error(function (err) {
+                    deferred.reject(err);
                 });
         }
 
         function register(user) {
-            debugger;
+            var deferred = $q.defer();
             $http.post("signup", user)
-                .success(function(res) {
-                    $window.localStorage.setItem("jwt_token", res.token);
+                .success(function (res) {
+                    deferred.resolve(res);
+               
 
                 })
-                .error(function(err) {
-                    $window.localStorage.removeItem("jwt_token");
+                .error(function (err) {
+                    deferred.resolve(err);
+               
                 });
+
+            return deferred.promise;
         }
 
         return {
@@ -36,6 +38,8 @@
         };
     }
 
+    authService.$inject = ["$http"];
+    authService.$inject = ["$window"];
     angular
         .module("jwtWebApp")
         .service("authService", authService);

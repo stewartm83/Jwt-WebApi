@@ -1,5 +1,4 @@
-﻿
-<div class="container body-content">
+﻿<div class="container body-content">
     <h2>List of Books</h2>
 
     <div ng-show="isSuccess">
@@ -17,7 +16,7 @@
         <div id="products" class="row list-group">
             <div class="item  col-xs-4 col-lg-4" ng-repeat="book in books">
                 <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt=""/>
                     <div class="caption">
                         <h4 class="group inner list-group-item-heading">
                             {{book.Title}}
@@ -49,16 +48,16 @@
     <div ng-hide="isSuccess" class="text-danger">
         <p>
 
-{{ErrorMessage}}
+            {{ErrorMessage}}
         </p>
 
     </div>
 
-    
+
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         $('#list').click(function(event) {
             event.preventDefault();

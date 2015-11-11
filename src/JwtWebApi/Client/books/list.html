@@ -1,0 +1,76 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" ng-click="addNew()">Add</button>
+            </div>
+
+            <table class="table table-condensed">
+                <thead>
+                <tr style="font-size: 14px;">
+
+
+                    <th>Name</th>
+
+
+                    <th>Date Created</th>
+
+
+                    <th>Date Updated</th>
+
+
+                    <th>Title</th>
+
+
+                    <th>Description</th>
+
+
+                    <th>Price</th>
+
+
+                    <th>Genre</th>
+
+
+                    <th>Publish Date</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in books" ng-class-even="table-striped" style="cursor: pointer">
+                    <td>{{item.name}}</td>
+
+                    <td>{{item.dateCreated.shortDateFormat()}}</td>
+
+                    <td>{{item.dateUpdated.shortDateFormat()}}</td>
+
+                    <td>{{item.title}}</td>
+
+                    <td>{{item.description}}</td>
+
+                    <td>{{item.price}}</td>
+
+                    <td>{{item.genre}}</td>
+
+                    <td>{{item.publishDate.shortDateFormat()}}</td>
+
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="selectItem(item)">Edit</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="deleteItem(item)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

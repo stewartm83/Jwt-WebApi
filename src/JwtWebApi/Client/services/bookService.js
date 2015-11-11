@@ -1,36 +1,41 @@
-﻿(function () {
+﻿(function() {
 
     "use strict";
 
     angular.module("jwtWebApp")
-        .factory("bookService", ["$http", function ($http) {
+        .factory("bookService", [
+            "$http", function($http, $q) {
 
-        function getBooks() {
+                function getBooks() {
+                    var deferred = $q.defer();
+                    $http.get("/api/books").
+                        success(function(res) {
+                            deferred.resolve(res);
+                        })
+                        .error(function(err) {
+                            deferred.reject(err);
+                        });
+                    return deferred.promise;
+                }
 
-                     $http.get("/api/books").
-                    success(function(res) {
-                       return   res;
-                    })
-                    .error(function(err) {
-                        return err;
-                    });
-        }
+                function getBook(id) {
+                    var deferred = $q.defer();
 
-        function getBook(id) {
+                    $http.get("api/books/" + id)
+                        .success(function(res) {
+                            deferred.resolve(res);
+                        })
+                        .error(function(err) {
+                            deferred.reject(err);
+                        });
+                    return deferred.promise;
+                }
 
-            $http.get("api/books/" + id)
-                    .success(function(res) {
-                     return  res;
-                    })
-                    .error(function(err) {
-                    return err;
-                });
-        }
+                return {
+                    getBooks: getBooks,
+                    getBook: getBook
+                }
 
-        return {
-            getBooks: getBooks,
-            getBook: getBook
-        }
-       
-    }]);
+            }
+        ]);
 })();

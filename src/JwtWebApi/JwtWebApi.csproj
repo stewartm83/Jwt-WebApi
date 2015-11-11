@@ -216,6 +216,10 @@
     <Content Include="Client\books\book-detail.js" />
     <Content Include="Client\books\books.html" />
     <Content Include="Client\books\books.js" />
+    <Content Include="Client\books\edit.html" />
+    <Content Include="Client\books\edit.js" />
+    <Content Include="Client\books\list.html" />
+    <Content Include="Client\books\list.js" />
     <Content Include="Client\home\content.html" />
     <Content Include="Client\home\footer.html" />
     <Content Include="Client\home\header.html" />
