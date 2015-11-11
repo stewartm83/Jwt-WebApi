@@ -44,7 +44,8 @@ namespace JwtWebApi
                 "~/client/home/header.js",
                 "~/client/home/home.js",
                 "~/client/services/authinterceptor.js",
-                "~/client/services/bookservice.js"));
+                "~/client/services/authService.js",
+                "~/client/services/bookService.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",

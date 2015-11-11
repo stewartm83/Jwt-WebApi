@@ -222,6 +222,7 @@
     <Content Include="Client\home\header.js" />
     <Content Include="Client\home\home.html" />
     <Content Include="Client\home\home.js" />
+    <Content Include="Client\services\authService.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

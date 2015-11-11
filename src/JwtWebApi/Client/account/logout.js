@@ -1,4 +1,5 @@
-﻿(function() {
+﻿(function () {
+
     "use strict";
 
     //Tryout a new pattern in Angular

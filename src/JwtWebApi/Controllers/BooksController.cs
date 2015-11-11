@@ -10,7 +10,7 @@ using JwtWebApi.Models.Entities;
 
 namespace JwtWebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class BooksController : ApiController
     {
         private JwaContext db = new JwaContext();
