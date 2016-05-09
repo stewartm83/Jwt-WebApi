@@ -2,9 +2,12 @@
 
     "use strict";
 
-    function authService($http, $window, $q) {
+    angular
+    .module("jwtWebApp")
+    .service("authService",["$http","$window","$q", function authService($http, $window, $q) {
 
         function login(user) {
+            debugger;
             var deferred = $q.defer();
 
             $http.post("signin", user)
@@ -17,16 +20,18 @@
         }
 
         function register(user) {
+            debugger;
             var deferred = $q.defer();
+            debugger;
             $http.post("signup", user)
                 .success(function (res) {
                     deferred.resolve(res);
-               
+
 
                 })
                 .error(function (err) {
                     deferred.resolve(err);
-               
+
                 });
 
             return deferred.promise;
@@ -36,12 +41,6 @@
             login: login,
             register: register
         };
-    }
-
-    authService.$inject = ["$http"];
-    authService.$inject = ["$window"];
-    angular
-        .module("jwtWebApp")
-        .service("authService", authService);
+    }]);
 
 })();

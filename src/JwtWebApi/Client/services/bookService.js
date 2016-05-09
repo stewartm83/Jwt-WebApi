@@ -4,8 +4,8 @@
 
     angular.module("jwtWebApp")
         .factory("bookService", [
-            "$http", function($http, $q) {
-
+            "$http","$q", function($http, $q) {
+                debugger;
                 function getBooks() {
                     var deferred = $q.defer();
                     $http.get("/api/books").

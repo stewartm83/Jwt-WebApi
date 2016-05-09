@@ -6,8 +6,8 @@
         [
             "$scope", "bookService", function($scope, bookService) {
                 $scope.books = {};
-
-                bookService.Getbooks().then(
+                debugger;
+                bookService.getBooks().then(
                     function(response) {
                         console.log(response);
                         $scope.books = response;
