@@ -54,3 +54,6 @@ C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.Http.Cors.dll
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\System.Web.Http.Cors.xml
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\bin\JWT.dll
+D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.Migrations.initial.resources
+D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.GenerateResource.Cache
+D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csprojResolveAssemblyReference.cache
