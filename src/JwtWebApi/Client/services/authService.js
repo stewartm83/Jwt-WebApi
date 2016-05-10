@@ -3,44 +3,47 @@
     "use strict";
 
     angular
-    .module("jwtWebApp")
-    .service("authService",["$http","$window","$q", function authService($http, $window, $q) {
+        .module("jwtWebApp")
+        .service("authService",
+        [
+            "$http", "$window", "$q", function authService($http, $window, $q) {
 
-        function login(user) {
-            debugger;
-            var deferred = $q.defer();
+                function login(user) {
 
-            $http.post("signin", user)
-                .success(function (res) {
-                    deferred.resolve(res);
-                })
-                .error(function (err) {
-                    deferred.reject(err);
-                });
-        }
+                    var deferred = $q.defer();
 
-        function register(user) {
-            debugger;
-            var deferred = $q.defer();
-            debugger;
-            $http.post("signup", user)
-                .success(function (res) {
-                    deferred.resolve(res);
+                    $http.post("signin", user)
+                        .success(function(res) {
+                            deferred.resolve(res);
+                        })
+                        .error(function(err) {
+                            deferred.reject(err);
+                        });
+                }
+
+                function register(user) {
+
+                    var deferred = $q.defer();
+
+                    $http.post("signup", user)
+                        .success(function(res) {
+                            deferred.resolve(res);
 
 
-                })
-                .error(function (err) {
-                    deferred.resolve(err);
+                        })
+                        .error(function(err) {
+                            deferred.resolve(err);
 
-                });
+                        });
 
-            return deferred.promise;
-        }
+                    return deferred.promise;
+                }
 
-        return {
-            login: login,
-            register: register
-        };
-    }]);
+                return {
+                    login: login,
+                    register: register
+                };
+            }
+        ]);
 
 })();

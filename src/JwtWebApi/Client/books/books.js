@@ -4,17 +4,20 @@
     angular.module("jwtWebApp")
         .controller("BooksCtrl",
         [
-            "$scope", "bookService", function($scope, bookService) {
+            "$scope", "bookService",
+            function($scope, bookService) {
+
                 $scope.books = {};
-                debugger;
-                bookService.getBooks().then(
-                    function(response) {
-                        console.log(response);
-                        $scope.books = response;
-                    },
-                    function(error) {
-                        console.log(error);
-                    });
+
+                bookService.getBooks()
+                    .then(
+                        function(response) {
+                            console.log(response);
+                            $scope.books = response;
+                        },
+                        function(error) {
+                            console.log(error);
+                        });
 
                 $scope.isSuccess = true;
 

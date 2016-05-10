@@ -1,23 +1,22 @@
-﻿(function () {
+﻿(function() {
 
     "use strict";
 
-    //Tryout a new pattern in Angular
-    function logoutCtrl($scope, $window, $state) {
-
-        function logout() {
-            $window.localStorage.removeItem("jwt_token");
-            $state.go("home");
-        }
-
-        logout();
-    }
-
     angular
         .module("jwtWebApp")
-        .controller("LogoutCtrl", logoutCtrl);
+        .controller("LogoutCtrl",
+        [
+            "$scope", "$window", "$state",
+            function($scope, $window, $state) {
 
-    logoutCtrl.$inject = ["$window"];
-    logoutCtrl.$inject = ["$state"];
+                function logout() {
+                    $window.localStorage.removeItem("jwt_token");
+                    $state.go("home");
+                }
+
+                logout();
+            }
+        ]);
+
 
 })();

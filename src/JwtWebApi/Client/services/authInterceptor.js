@@ -1,10 +1,11 @@
-﻿(function () {
+﻿(function() {
 
     "use strict";
 
     angular.module("jwtWebApp")
-        .factory("authinterceptor", [
-            "$window", function ($window) {
+        .factory("authinterceptor",
+        [
+            "$window", function($window) {
 
                 var storage = $window.localStorage;
 

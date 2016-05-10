@@ -5,8 +5,8 @@
     angular.module("jwtWebApp")
         .controller("LoginCtrl",
         [
-            "$scope", "$window", "authService", "$state",
-            function($scope, $window, authService, $state) {
+            "$scope", "$window", "$http", "$state",
+            function($scope, $window, $http, $state) {
 
                 var storage = $window.localStorage;
 
@@ -19,13 +19,13 @@
 
                     //Check for token
                     if (!storage.getItem("jwt_token")) {
-                        authService.login(user).then(
-                            function(response) {
-                                console.log(response);
-                                $window.localStorage.setItem("jwt_token", response.token);
-                            },
-                            function(error) {
-                                console.log(error);
+                        $http.post("signin", user)
+                            .success(function(res) {
+                                $window.localStorage.setItem("jwt_token", res.token);
+                                $state.go("books");
+                            })
+                            .error(function(err) {
+                                console.log(err);
                             });
                     }
 

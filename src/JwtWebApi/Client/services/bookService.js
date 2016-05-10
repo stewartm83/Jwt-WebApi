@@ -3,9 +3,11 @@
     "use strict";
 
     angular.module("jwtWebApp")
-        .factory("bookService", [
-            "$http","$q", function($http, $q) {
+        .factory("bookService",
+        [
+            "$http", "$q", function($http, $q) {
                 debugger;
+
                 function getBooks() {
                     var deferred = $q.defer();
                     $http.get("/api/books").
@@ -34,8 +36,7 @@
                 return {
                     getBooks: getBooks,
                     getBook: getBook
-                }
-
+                };
             }
         ]);
 })();
