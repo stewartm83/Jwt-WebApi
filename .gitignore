@@ -35,4 +35,67 @@ src/packages
 src/.vs
 src/**/bin
 src/**/obj
-src/packages/Newtonsoft.Json.9.0.1/lib/netstandard1.0/Newtonsoft.Json.xml
+# Autosave files
+*~
+
+# build
+[Oo]bj/
+[Bb]in/
+packages/
+TestResults/
+.pids_tmp/
+
+# publish
+publish/
+
+# globs
+Makefile.in
+*.DS_Store
+*.sln.cache
+*.suo
+*.cache
+*.pidb
+*.userprefs
+*.usertasks
+config.log
+config.make
+config.status
+aclocal.m4
+install-sh
+autom4te.cache/
+*.user
+*.tar.gz
+tarballs/
+test-results/
+Thumbs.db
+mono_crash.*.json
+
+# Mac bundle stuff
+*.dmg
+*.app
+
+# resharper
+*_Resharper.*
+*.Resharper
+
+# dotCover
+*.dotCover
+
+# Rider
+.idea
+
+# node_modules
+/*/node_modules
+/Rafiki.Web/ClientApp/dist/
+/Rafiki.Web/wwwroot/dist/
+/Rafiki.API/docs/
+
+DevelopmentOverrides.json
+/*/.vscode
+/*/.vs
+solution-explorer
+
+.vagrant
+*.log
+.vs
+
