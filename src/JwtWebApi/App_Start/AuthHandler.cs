@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
 using JWT;
+using JWT.Serializers;
 
 namespace JwtWebApi
 {
@@ -63,10 +64,13 @@ namespace JwtWebApi
 
         private static ClaimsPrincipal ValidateToken(string token, string secret, bool checkExpiration)
         {
-            var jsonSerializer = new JavaScriptSerializer();
-            var payloadJson = JsonWebToken.Decode(token, secret);
-            var payloadData = jsonSerializer.Deserialize<Dictionary<string, object>>(payloadJson);
+            IJsonSerializer serializer = new JsonNetSerializer();
+            IDateTimeProvider provider = new UtcDateTimeProvider();
+            IJwtValidator validator = new JwtValidator(serializer, provider);
+            IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+            IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder);
 
+            var payloadData = decoder.DecodeToObject<IDictionary<string, object>>(token, secret, true);
 
             object exp;
             if (payloadData != null && (checkExpiration && payloadData.TryGetValue("exp", out exp)))

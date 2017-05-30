@@ -10,7 +10,8 @@ using JwtWebApi.Models;
 using JwtWebApi.Models.Entities;
 using JwtWebApi.ViewModels;
 using JWT;
-
+using JWT.Algorithms;
+using JWT.Serializers;
 
 namespace JwtWebApi.Controllers
 {
@@ -98,22 +99,27 @@ namespace JwtWebApi.Controllers
             var issuedAt = Math.Round((DateTime.UtcNow - unixEpoch).TotalSeconds);
             var notBefore = Math.Round((DateTime.UtcNow.AddMonths(6) - unixEpoch).TotalSeconds);
 
-     
+
             var payload = new Dictionary<string, object>
             {
-                {"email", user.Email},
-                {"userId", user.Id},
-                {"role", "Admin"  },
-                {"sub", user.Id},
-                {"nbf", notBefore},
-                {"iat", issuedAt},
-                {"exp", expiry}
+                { "email", user.Email },
+                { "userId", user.Id },
+                { "role", "User" },
+                { "sub", user.Id },
+                { "notBefore", notBefore },
+                { "issuedAt", issuedAt },
+                { "expiry", expiry }
             };
 
             //var secret = ConfigurationManager.AppSettings.Get("jwtKey");
             const string apikey = "secretKey";
 
-            var token = JsonWebToken.Encode(payload, apikey, JwtHashAlgorithm.HS256);
+            IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
+            IJsonSerializer serializer = new JsonNetSerializer();
+            IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+            IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
+
+            var token = encoder.Encode(payload, apikey);
 
             dbUser = new { user.Email, user.Id};
             return token;
