@@ -60,3 +60,4 @@ D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csprojResolveAs
 C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.Migrations.initial.resources
 C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.GenerateResource.Cache
 C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.CoreCompileInputs.cache
+C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csprojResolveAssemblyReference.cache
