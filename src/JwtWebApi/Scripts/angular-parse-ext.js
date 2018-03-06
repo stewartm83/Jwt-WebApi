@@ -1,6 +1,6 @@
 /**
- * @license AngularJS v1.5.5
- * (c) 2010-2016 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.6.6
+ * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, angular) {'use strict';
@@ -1223,6 +1223,8 @@ function IDC_Y(cp) {
   return false;
 }
 
+/* eslint-disable new-cap */
+
 /**
  * @ngdoc module
  * @name ngParseExt
@@ -1265,7 +1267,8 @@ function isValidIdentifierContinue(ch, cp) {
 angular.module('ngParseExt', [])
   .config(['$parseProvider', function($parseProvider) {
     $parseProvider.setIdentifierFns(isValidIdentifierStart, isValidIdentifierContinue);
-  }]);
+  }])
+  .info({ angularVersion: '1.6.6' });
 
 
 })(window, window.angular);

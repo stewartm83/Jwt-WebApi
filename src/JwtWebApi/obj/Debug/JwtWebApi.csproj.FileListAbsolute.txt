@@ -57,3 +57,6 @@ C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi\
 D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.Migrations.initial.resources
 D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.GenerateResource.Cache
 D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csprojResolveAssemblyReference.cache
+C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.Migrations.initial.resources
+C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.GenerateResource.Cache
+C:\Work\Jwt-WebApi\src\JwtWebApi\obj\Debug\JwtWebApi.csproj.CoreCompileInputs.cache

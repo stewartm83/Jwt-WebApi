@@ -50,3 +50,5 @@ C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi.
 C:\Users\Stewart\Documents\Visual Studio 2015\Projects\Jwt-WebApi\src\JwtWebApi.Tests\bin\Debug\System.Web.Http.Cors.xml
 D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi.Tests\obj\Debug\JwtWebApi.Tests.csprojResolveAssemblyReference.cache
 D:\Github\JwtWebApi\Jwt-WebApi\src\JwtWebApi.Tests\obj\Debug\JwtWebApi.Tests.pdb
+C:\Work\Jwt-WebApi\src\JwtWebApi.Tests\obj\Debug\JwtWebApi.Tests.csprojResolveAssemblyReference.cache
+C:\Work\Jwt-WebApi\src\JwtWebApi.Tests\obj\Debug\JwtWebApi.Tests.csproj.CoreCompileInputs.cache
