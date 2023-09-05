@@ -1,10 +1,15 @@
-// Type definitions for popper.js 1.10
-// Project: https://github.com/FezVrasta/popper.js/
-// Definitions by: edcarroll <https://github.com/edcarroll>, ggray <https://github.com/giladgray>, rhysd <https://rhysd.github.io>, joscha <https://github.com/joscha>, seckardt <https://github.com/seckardt>, marcfallows <https://github.com/marcfallows>
+/**
+ * @fileoverview This file only declares the public portions of the API.
+ * It should not define internal pieces such as utils or modifier details.
+ *
+ * Original definitions by: edcarroll <https://github.com/edcarroll>, ggray <https://github.com/giladgray>, rhysd <https://rhysd.github.io>, joscha <https://github.com/joscha>, seckardt <https://github.com/seckardt>, marcfallows <https://github.com/marcfallows>
+ */
 
-// This file only declares the public portions of the API.
-// It should not define internal pieces such as utils or modifier details.
-
+/**
+ * This kind of namespace declaration is not necessary, but is kept here for backwards-compatibility with
+ * popper.js 1.x. It can be removed in 2.x so that the default export is simply the Popper class
+ * and all the types / interfaces are top-level named exports.
+ */
 declare namespace Popper {
   export type Position = 'top' | 'right' | 'bottom' | 'left';
 
@@ -26,7 +31,21 @@ declare namespace Popper {
 
   export type Boundary = 'scrollParent' | 'viewport' | 'window';
 
+  export type Behavior = 'flip' | 'clockwise' | 'counterclockwise';
+
   export type ModifierFn = (data: Data, options: Object) => Data;
+
+  export interface Attributes {
+    'x-out-of-boundaries': '' | false;
+    'x-placement': Placement;
+  }
+
+  export interface Padding {
+    top?: number,
+    bottom?: number,
+    left?: number,
+    right?: number,
+  }
 
   export interface BaseModifier {
     order?: number;
@@ -41,7 +60,7 @@ declare namespace Popper {
     };
     preventOverflow?: BaseModifier & {
       priority?: Position[],
-      padding?: number,
+      padding?: number | Padding,
       boundariesElement?: Boundary | Element,
       escapeWithReference?: boolean
     };
@@ -50,9 +69,11 @@ declare namespace Popper {
       element?: string | Element,
     };
     flip?: BaseModifier & {
-      behavior?: 'flip' | 'clockwise' | 'counterclockwise' | Position[],
-      padding?: number,
+      behavior?: Behavior | Position[],
+      padding?: number | Padding,
       boundariesElement?: Boundary | Element,
+      flipVariations?: boolean,
+      flipVariationsByContent?: boolean,
     };
     inner?: BaseModifier;
     hide?: BaseModifier;
@@ -61,10 +82,11 @@ declare namespace Popper {
       gpuAcceleration?: boolean,
     };
     computeStyle?: BaseModifier & {
-        gpuAcceleration?: boolean;
-        x?: 'bottom' | 'top',
-        y?: 'left' | 'right'
+      gpuAcceleration?: boolean;
+      x?: 'bottom' | 'top',
+      y?: 'left' | 'right'
     };
+
     [name: string]: (BaseModifier & Record<string, any>) | undefined;
   }
 
@@ -83,6 +105,8 @@ declare namespace Popper {
     hide: boolean;
     arrowElement: Element;
     styles: CSSStyleDeclaration;
+    arrowStyles: CSSStyleDeclaration;
+    attributes: Attributes;
     boundaries: Object;
     offsets: {
       popper: Offset,
@@ -96,36 +120,60 @@ declare namespace Popper {
 
   export interface PopperOptions {
     placement?: Placement;
+    positionFixed?: boolean;
     eventsEnabled?: boolean;
     modifiers?: Modifiers;
     removeOnDestroy?: boolean;
+
     onCreate?(data: Data): void;
+
     onUpdate?(data: Data): void;
   }
 
   export interface ReferenceObject {
     clientHeight: number;
     clientWidth: number;
+    referenceNode?: Node;
+
     getBoundingClientRect(): ClientRect;
   }
 }
 
+// Re-export types in the Popper namespace so that they can be accessed as top-level named exports.
+// These re-exports should be removed in 2.x when the "declare namespace Popper" syntax is removed.
+export type Padding = Popper.Padding;
+export type Position = Popper.Position;
+export type Placement = Popper.Placement;
+export type Boundary = Popper.Boundary;
+export type Behavior = Popper.Behavior;
+export type ModifierFn = Popper.ModifierFn;
+export type BaseModifier = Popper.BaseModifier;
+export type Modifiers = Popper.Modifiers;
+export type Offset = Popper.Offset;
+export type Data = Popper.Data;
+export type PopperOptions = Popper.PopperOptions;
+export type ReferenceObject = Popper.ReferenceObject;
+
 declare class Popper {
-  static modifiers: (Popper.BaseModifier & { name: string })[];
-  static placements: Popper.Placement[];
-  static Defaults: Popper.PopperOptions;
+  static modifiers: (BaseModifier & { name: string })[];
+  static placements: Placement[];
+  static Defaults: PopperOptions;
 
-  options: Popper.PopperOptions;
+  options: PopperOptions;
+  popper: Element;
+  reference: Element | ReferenceObject;
 
-  constructor(reference: Element | Popper.ReferenceObject, popper: Element, options?: Popper.PopperOptions);
+  constructor(reference: Element | ReferenceObject, popper: Element, options?: PopperOptions);
 
   destroy(): void;
+
   update(): void;
+
   scheduleUpdate(): void;
+
   enableEventListeners(): void;
+
   disableEventListeners(): void;
 }
 
-declare module 'popper.js' {
-  export default Popper;
-}
+export default Popper;
